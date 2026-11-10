@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Gla Shutter Hero Slider - Demo</title>
+		<!-- Production CSS -->
+		<link rel="stylesheet" href="assets/css/style.min.css" />
+		<style>
+			/* Base Styling */
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+				background-color: #0f0f11;
+				color: #fff;
+				font-family:
+					-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+					sans-serif;
+			}
+
+			/* Transparent & Overlapping Menu */
+			.demo-header {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 80px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 50px;
+				box-sizing: border-box;
+				background: linear-gradient(
+					to bottom,
+					rgba(0, 0, 0, 0.7) 0%,
+					rgba(0, 0, 0, 0) 100%
+				);
+				z-index: 1000;
+			}
+			.demo-brand {
+				display: flex;
+				align-items: center;
+				gap: 12px; /* Abstand zwischen Logo und Text */
+				text-decoration: none;
+			}
+			.demo-brand img {
+				height: 32px;
+				width: auto;
+				object-fit: contain;
+			}
+			.demo-brand span {
+				font-weight: bold;
+				font-size: 1.2rem;
+				letter-spacing: 1px;
+				color: #f1683a;
+			}
+			.demo-nav {
+				display: flex;
+				gap: 30px;
+				font-size: 1rem;
+				font-weight: 500;
+				letter-spacing: 1px;
+			}
+			.demo-nav a,
+			.demo-nav span {
+				color: #ddd;
+				text-decoration: none;
+				cursor: pointer;
+				transition: color 0.3s;
+				text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+			}
+			.demo-nav a:hover,
+			.demo-nav span:hover {
+				color: #fff;
+			}
+
+			/* Second Screen for Parallax Testing */
+			.demo-next-section {
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				background-color: #121216;
+				text-align: center;
+				padding: 0 20px;
+				border-top: 1px solid rgba(255, 255, 255, 0.05);
+			}
+			.demo-next-section h2 {
+				font-size: 2.5rem;
+				margin-bottom: 15px;
+				color: #fff;
+			}
+			.demo-next-section p {
+				color: #a1a1aa;
+				font-size: 1.1rem;
+				max-width: 600px;
+			}
+
+			/* Footer with sales encouragement message */
+			.demo-footer {
+				height: 100px;
+				background: #050505;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: 8px;
+				font-size: 0.85rem;
+				color: #777;
+				border-top: 1px solid rgba(255, 255, 255, 0.05);
+			}
+			.demo-footer .footer-brand {
+				color: #fff;
+				font-weight: 600;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- TRANSPARENT & OVERLAPPING HEADER -->
+		<header class="demo-header">
+			<!-- <div style="display: flex; align-items: center; gap: 10px">
+				<img
+					src="assets/images/logo.png"
+					alt="WebDevGLa Logo"
+					style="
+						height: 32px;
+						width: auto;
+						object-fit: contain;
+						filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+					"
+				/>
+				<span>WebDevGLa</span>
+			</div> -->
+			<a href="#" class="demo-brand">
+				<img src="assets/images/logo.png" alt="WebDevGLa Logo" />
+				<span>WebDevGLa</span>
+			</a>
+			<nav class="demo-nav">
+				<!-- <span>Home</span> -->
+				<!-- <span>Features</span> -->
+				<!-- <span>Portfolio</span> -->
+				<a href="../Documentation/index.html" target="_blank"
+					>Documentation</a
+				>
+				<!-- <span>Contact</span> -->
+			</nav>
+		</header>
+
+		<!-- HERO SLIDER (Starts at top 0, overlapping under transparent header) -->
+		<div
+			class="wp-block-gla-heroslider"
+			data-autoplay="true"
+			data-interval="7000"
+		>
+			<div class="slide-list">
+				<!-- Dynamically injected via JavaScript from slides.json -->
+			</div>
+			<div class="slide-arrows">
+				<button id="prev">&lt;</button>
+				<button id="next">&gt;</button>
+			</div>
+			<div class="slide-pagination"></div>
+			<div class="slide-time"></div>
+		</div>
+
+		<!-- SECOND SCREEN: PARALLAX TEST AREA -->
+		<section class="demo-next-section">
+			<h2>Scroll Down Parallax Test Area</h2>
+			<p>
+				Notice how the transparent header cleanly overlays the initial
+				fullscreen slider view, creating a true commercial-grade landing
+				page look.
+			</p>
+			<div
+				style="
+					margin-top: 25px;
+					color: #f1683a;
+					font-weight: 600;
+					letter-spacing: 0.5px;
+				"
+			>
+				Crafted with passion by WebDevGLa — I hope you enjoy building
+				with it! 🚀
+			</div>
+		</section>
+
+		<!-- FOOTER -->
+		<footer class="demo-footer">
+			<div style="display: flex; align-items: center; gap: 10px">
+				<img
+					src="assets/images/logo.png"
+					alt="WebDevGLa Logo"
+					style="height: 28px; width: auto; object-fit: contain"
+				/>
+				<span style="font-weight: 600; color: #fff; font-size: 1rem"
+					>WebDevGLa</span
+				>
+			</div>
+			<div>
+				&copy; 2026 WebDevGLa. All rights reserved. I hope you enjoy!
+			</div>
+		</footer>
+
+		<!-- Production JavaScript -->
+		<script src="assets/js/script.min.js"></script>
+	</body>
+</html>

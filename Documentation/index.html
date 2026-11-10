@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Documentation - Gla Shutter Hero Slider</title>
+		<style>
+			:root {
+				--primary: #f1683a;
+				--bg: #0f0f11;
+				--card-bg: #18181c;
+				--text: #e1e1e6;
+				--text-muted: #a1a1aa;
+				--code-bg: #222226;
+			}
+			body {
+				font-family:
+					-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+					Helvetica, Arial, sans-serif;
+				background-color: var(--bg);
+				color: var(--text);
+				line-height: 1.6;
+				margin: 0;
+				padding: 40px 20px;
+			}
+			.container {
+				max-width: 900px;
+				margin: 0 auto;
+			}
+			header {
+				border-bottom: 1px solid #2d2d32;
+				padding-bottom: 20px;
+				margin-bottom: 40px;
+			}
+			h1 {
+				color: #fff;
+				font-size: 2.2rem;
+				margin: 0 0 10px 0;
+			}
+			.badge {
+				background-color: var(--primary);
+				color: #fff;
+				padding: 4px 10px;
+				border-radius: 4px;
+				font-size: 0.85rem;
+				font-weight: 600;
+			}
+			h2 {
+				color: #fff;
+				border-bottom: 1px solid #2d2d32;
+				padding-bottom: 8px;
+				margin-top: 40px;
+			}
+			.card {
+				background-color: var(--card-bg);
+				border: 1px solid #2d2d32;
+				border-radius: 8px;
+				padding: 24px;
+				margin-bottom: 20px;
+			}
+			code,
+			pre {
+				font-family: 'Fira Code', Monaco, Consolas, monospace;
+				background-color: var(--code-bg);
+				border-radius: 4px;
+			}
+			code {
+				padding: 2px 6px;
+				color: var(--primary);
+			}
+			pre {
+				padding: 16px;
+				overflow-x: auto;
+				color: #f8f8f2;
+			}
+			ul {
+				padding-left: 20px;
+			}
+			li {
+				margin-bottom: 8px;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-top: 15px;
+			}
+			th,
+			td {
+				border: 1px solid #2d2d32;
+				padding: 10px 12px;
+				text-align: left;
+				font-size: 0.9rem;
+			}
+			th {
+				background-color: #222226;
+				color: #fff;
+			}
+			footer {
+				margin-top: 60px;
+				text-align: center;
+				color: var(--text-muted);
+				font-size: 0.9rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1>
+					Gla Shutter Hero Slider <span class="badge">v1.0.0</span>
+				</h1>
+				<p style="color: var(--text-muted)">
+					Comprehensive Documentation & Guide by
+					<strong>WebDevGLa</strong>
+				</p>
+			</header>
+
+			<section class="card">
+				<h2>1. Overview & Key Features</h2>
+				<p>
+					Thank you for choosing the
+					<strong>Gla Shutter Hero Slider</strong>! This component is
+					a premium, highly performant, and responsive fullscreen hero
+					slider designed for modern websites, landing pages, and
+					templates.
+				</p>
+				<div
+					class="doc-badge"
+					style="
+						background: rgba(241, 104, 58, 0.1);
+						border-left: 4px solid #f1683a;
+						padding: 15px;
+						margin: 20px 0;
+						border-radius: 4px;
+					"
+				>
+					<strong>🚀 100% Dependency-Free:</strong>
+					This component is built strictly using modern Vanilla
+					JavaScript and native CSS. It does <em>not</em> rely on
+					jQuery, Swiper.js, or any third-party frameworks. You can
+					integrate it directly into any environment without worrying
+					about dependency conflicts or performance overhead.
+				</div>
+				<ul>
+					<li>
+						<strong>Fullscreen Hero Experience:</strong> Perfectly
+						scales across all desktop and mobile viewports.
+					</li>
+					<li>
+						<strong>Shutter Reveal Transition:</strong> Smooth
+						clip-path animations that transition between slides with
+						professional flair.
+					</li>
+					<li>
+						<strong>Parallax Background Effect:</strong> Subtle
+						scroll-driven movement adding depth to your imagery.
+					</li>
+					<li>
+						<strong>JSON-Driven Content:</strong> Zero hardcoded
+						text—manage all your slides, typography, colors, and
+						buttons from a single <code>slides.json</code> file.
+					</li>
+					<li>
+						<strong>Interactive Controls:</strong> Includes
+						navigation arrows, dynamic pagination dots, progress
+						timer bar, and hover-to-pause functionality.
+					</li>
+				</ul>
+			</section>
+
+			<section class="card">
+				<h2>2. Package & Folder Structure</h2>
+				<p>
+					Your downloaded commercial package is structured as follows
+					for easy deployment and review:
+				</p>
+				<pre><code>gla-shutter-slider/                 # Root distribution package
+├── README.txt                       # Product overview, license info & quick notes
+├── Documentation/                   # Documentation folder
+│   └── index.html                   # You are here (Detailed HTML manual)
+└── Main-Files/                      # Production-ready assets
+    ├── index.html                   # Demo landing page with header/footer
+    └── assets/
+        ├── css/
+        │   ├── style.css            # Full, unminified CSS source code
+        │   └── style.min.css        # Production-ready minified CSS file
+        ├── js/
+        │   ├── script.js            # Full, unminified JavaScript engine source
+        │   └── script.min.js        # Production-ready minified JS file
+        ├── json/
+        │   └── slides.json          # Central data source for all slides
+        └── images/                  # Media assets directory
+            ├── logo.png             # Brand logo for header & footer
+            ├── img1.jpg             # Placeholder image for Slide 1
+            └── img2.jpg             # Placeholder image for Slide 2</code></pre>
+			</section>
+
+			<section class="card">
+				<h2>3. Quick Start Integration Guide</h2>
+				<ol>
+					<li>
+						Copy the contents of the <code>Main-Files</code> folder
+						into your web project directory.
+					</li>
+					<li>
+						Link the optimized production stylesheet inside your
+						HTML <code>&lt;head&gt;</code>:
+						<pre><code>&lt;link rel="stylesheet" href="assets/css/style.min.css"&gt;</code></pre>
+					</li>
+					<li>
+						Include the JavaScript engine right before the closing
+						<code>&lt;/body&gt;</code> tag:
+						<pre><code>&lt;script src="assets/js/script.min.js"&gt;&lt;/script&gt;</code></pre>
+					</li>
+					<li>
+						Place the slider wrapper markup in your HTML body.
+						<strong>Note:</strong> The slide items are automatically
+						created and injected via JavaScript into the
+						<code>&lt;div class="slide-list"&gt;&lt;/div&gt;</code>
+						container based on your JSON configuration:
+						<pre><code>&lt;div class="wp-block-gla-heroslider" data-autoplay="true" data-interval="7000"&gt;
+    &lt;div class="slide-list"&gt;&lt;/div&gt;
+    &lt;div class="slide-arrows"&gt;
+        &lt;button id="prev"&gt;&amp;lt;&lt;/button&gt;
+        &lt;button id="next"&gt;&amp;gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="slide-pagination"&gt;&lt;/div&gt;
+    &lt;div class="slide-time"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+					</li>
+				</ol>
+			</section>
+
+			<section class="card" style="border-left: 4px solid var(--primary)">
+				<h2>⚠️ Important Note on Local Testing (CORS Policy)</h2>
+				<p>
+					Because this slider loads content dynamically via JavaScript
+					<code>fetch()</code> from <code>slides.json</code>, modern
+					web browsers enforce security restrictions (CORS) when
+					opening HTML files directly from your local hard drive
+					(<code>file://</code> protocol).
+				</p>
+				<p><strong>To test or run your project properly:</strong></p>
+				<ul>
+					<li>
+						Use a local development server (e.g.,
+						<strong>VS Code Live Server</strong> extension,
+						BrowserSync, or XAMPP/MAMP).
+					</li>
+					<li>
+						Or upload your files to a live hosting environment (like
+						Netlify, Vercel, or your live web server).
+					</li>
+				</ul>
+			</section>
+
+			<section class="card">
+				<h2>4. Advanced JSON Slide Configuration</h2>
+				<p>
+					All slides are managed inside
+					<code>assets/json/slides.json</code>. You can configure
+					content visibility, text strings, colors, sizes, and button
+					properties individually per slide:
+				</p>
+				<pre><code>{
+  "settings": {
+    "version": "1.0.0"
+  },
+  "slides": {
+    "slide1": {
+      "showContent": {
+        "author": true,
+        "title": true,
+        "topic": true,
+        "description": true,
+        "button1": true,
+        "button2": true
+      },
+      "author": "AUTHOR 1",
+      "title": "TITLE 1",
+      "topic": "TOPIC 1",
+      "description": "Detailed description text for the slide goes here.",
+      "imageUrl": "assets/images/img1.jpg",
+      "authorColor": "#ffffff",
+      "authorFontSize": 24,
+      "titleColor": "#ffffff",
+      "titleFontSize": 48,
+      "topicColor": "#f1683a",
+      "topicFontSize": 48,
+      "button1Text": "SEE MORE",
+      "button1Url": "#",
+      "button1Color": "#eee",
+      "button1TextColor": "#000",
+      "button1HoverColor": "#f1683a",
+      "button1HoverTextColor": "#fff",
+      "button1BorderRadius": 4,
+      "button1Outline": true,
+      "button1OutlineColor": "#fff",
+      "button1OutlineWidth": 1
+    }
+  }
+}</code></pre>
+			</section>
+
+			<section class="card">
+				<h2>5. Global Slider HTML Attributes</h2>
+				<p>
+					You can customize core behavior directly via HTML data
+					attributes on the primary container element
+					<code>.wp-block-gla-heroslider</code>:
+				</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Attribute</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>data-autoplay</code></td>
+							<td>Boolean</td>
+							<td><code>true</code></td>
+							<td>
+								Enables or disables automatic sliding (<code
+									>true</code
+								>
+								or <code>false</code>).
+							</td>
+						</tr>
+						<tr>
+							<td><code>data-interval</code></td>
+							<td>Number</td>
+							<td><code>7000</code></td>
+							<td>
+								Sets the autoplay duration between slides in
+								milliseconds (e.g., 5000 = 5s).
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="card">
+				<h2>6. Browser Support & Requirements</h2>
+				<p>
+					The component is fully compatible with all modern web
+					browsers supporting CSS Grid, Flexbox, Custom Properties
+					(CSS Variables), and <code>clip-path</code>:
+				</p>
+				<ul>
+					<li>Google Chrome (latest)</li>
+					<li>Mozilla Firefox (latest)</li>
+					<li>Apple Safari (latest)</li>
+					<li>Microsoft Edge (latest)</li>
+				</ul>
+			</section>
+
+			<footer>
+				<p>
+					&copy; 2026 WebDevGLa. All Rights Reserved. Thank you for
+					your support!
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>
