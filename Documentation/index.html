@@ -107,7 +107,7 @@
 		<div class="container">
 			<header>
 				<h1>
-					Gla Shutter Hero Slider <span class="badge">v1.0.0</span>
+					Gla Shutter Hero Slider <span class="badge">v2.0.0</span>
 				</h1>
 				<p style="color: var(--text-muted)">
 					Comprehensive Documentation & Guide by
@@ -144,7 +144,8 @@
 				<ul>
 					<li>
 						<strong>Fullscreen Hero Experience:</strong> Perfectly
-						scales across all desktop and mobile viewports.
+						scales across all desktop and mobile viewports with
+						v2.0.0 responsive image optimizations.
 					</li>
 					<li>
 						<strong>Shutter Reveal Transition:</strong> Smooth
@@ -156,14 +157,29 @@
 						scroll-driven movement adding depth to your imagery.
 					</li>
 					<li>
-						<strong>JSON-Driven Content:</strong> Zero hardcoded
-						text—manage all your slides, typography, colors, and
-						buttons from a single <code>slides.json</code> file.
+						<strong>Modular Content Visibility:</strong> Toggle
+						individual content elements (Author, Title, Topic,
+						Description, Buttons) on or off per slide via JSON
+						settings without altering HTML structure.
 					</li>
 					<li>
-						<strong>Interactive Controls:</strong> Includes
-						navigation arrows, dynamic pagination dots, progress
-						timer bar, and hover-to-pause functionality.
+						<strong>Dynamic 9-Grid Content Placement:</strong>
+						Freely position slide content anywhere on screen
+						(Top-Left, Center-Right, Bottom-Center, etc.) with
+						precise alignment overrides.
+					</li>
+					<li>
+						<strong>JSON-Driven Content & Styling:</strong> Zero
+						hardcoded text—manage all slides, typography, colors,
+						borders, and button behavior dynamically from a central
+						<code>slides.json</code> file.
+					</li>
+					<li>
+						<strong>Interactive Controls & Gestures:</strong>
+						Features navigation arrows, dynamic pagination dots,
+						progress timer bar, global touch & desktop mouse
+						drag-to-swipe support, and configurable stop-on-hover
+						functionality.
 					</li>
 				</ul>
 			</section>
@@ -182,11 +198,9 @@
     ├── index.html                   # Demo landing page with header/footer
     └── assets/
         ├── css/
-        │   ├── style.css            # Full, unminified CSS source code
-        │   └── style.min.css        # Production-ready minified CSS file
+        │   └── style.css            # Full, unminified CSS source code (v2.0.0)
         ├── js/
-        │   ├── script.js            # Full, unminified JavaScript engine source
-        │   └── script.min.js        # Production-ready minified JS file
+        │   └── script.js            # Full, unminified JavaScript engine source (v2.0.0)
         ├── json/
         │   └── slides.json          # Central data source for all slides
         └── images/                  # Media assets directory
@@ -203,14 +217,14 @@
 						into your web project directory.
 					</li>
 					<li>
-						Link the optimized production stylesheet inside your
+						Link the unminified production stylesheet inside your
 						HTML <code>&lt;head&gt;</code>:
-						<pre><code>&lt;link rel="stylesheet" href="assets/css/style.min.css"&gt;</code></pre>
+						<pre><code>&lt;link rel="stylesheet" href="assets/css/style.css"&gt;</code></pre>
 					</li>
 					<li>
 						Include the JavaScript engine right before the closing
 						<code>&lt;/body&gt;</code> tag:
-						<pre><code>&lt;script src="assets/js/script.min.js"&gt;&lt;/script&gt;</code></pre>
+						<pre><code>&lt;script src="assets/js/script.js"&gt;&lt;/script&gt;</code></pre>
 					</li>
 					<li>
 						Place the slider wrapper markup in your HTML body.
@@ -218,7 +232,7 @@
 						created and injected via JavaScript into the
 						<code>&lt;div class="slide-list"&gt;&lt;/div&gt;</code>
 						container based on your JSON configuration:
-						<pre><code>&lt;div class="wp-block-gla-heroslider" data-autoplay="true" data-interval="7000"&gt;
+						<pre><code>&lt;div class="wp-block-gla-heroslider" data-autoplay="true" data-interval="7000" data-stop-on-hover="true"&gt;
     &lt;div class="slide-list"&gt;&lt;/div&gt;
     &lt;div class="slide-arrows"&gt;
         &lt;button id="prev"&gt;&amp;lt;&lt;/button&gt;
@@ -255,16 +269,16 @@
 			</section>
 
 			<section class="card">
-				<h2>4. Advanced JSON Slide Configuration</h2>
+				<h2>4. Advanced JSON Slide Configuration & Alignment</h2>
 				<p>
 					All slides are managed inside
-					<code>assets/json/slides.json</code>. You can configure
-					content visibility, text strings, colors, sizes, and button
-					properties individually per slide:
+					<code>assets/json/slides.json</code>. You can toggle content
+					visibility, set custom typography, define dynamic
+					alignments, and format buttons per slide:
 				</p>
 				<pre><code>{
   "settings": {
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "slides": {
     "slide1": {
@@ -276,6 +290,7 @@
         "button1": true,
         "button2": true
       },
+      "alignment": "center-center",
       "author": "AUTHOR 1",
       "title": "TITLE 1",
       "topic": "TOPIC 1",
@@ -337,6 +352,16 @@
 							<td>
 								Sets the autoplay duration between slides in
 								milliseconds (e.g., 5000 = 5s).
+							</td>
+						</tr>
+						<tr>
+							<td><code>data-stop-on-hover</code></td>
+							<td>Boolean</td>
+							<td><code>true</code></td>
+							<td>
+								Pauses autoplay when hovering over the slider.
+								Can be set to <code>false</code> to keep
+								autoplay running on hover.
 							</td>
 						</tr>
 					</tbody>

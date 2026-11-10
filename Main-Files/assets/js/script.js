@@ -2,8 +2,8 @@
  * ==============================================================================
  * Project Name: Gla Shutter Hero Slider
  * Description: Dynamic JSON parser and slider engine (Shutter + Parallax)
- * Version: 1.0.0
- * Author: Your Name / Agency
+ * Version: 2.0.0
+ * Author: WebDevGLa
  * License: Commercial / MIT
  * ==============================================================================
  */
@@ -36,15 +36,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 			// Compile inline CSS variables for styling
 			const authorColor = slide.authorColor || '#ffffff';
 			const authorSize = (slide.authorFontSize || 14) + 'px';
+			const authorFamily =
+				slide.authorFontFamily || '"Open Sans", sans-serif';
 			const titleColor = slide.titleColor || '#ffffff';
 			const titleSize = (slide.titleFontSize || 48) + 'px';
+			const titleFamily =
+				slide.titleFontFamily || '"Open Sans", sans-serif';
 			const topicColor = slide.topicColor || '#f1683a';
 			const topicSize = (slide.topicFontSize || 48) + 'px';
+			const topicFamily =
+				slide.topicFontFamily || '"Open Sans", sans-serif';
 
 			let styles =
-				`--slider-author-color: ${authorColor}; --slider-author-size: ${authorSize}; ` +
-				`--slider-title-color: ${titleColor}; --slider-title-size: ${titleSize}; ` +
-				`--slider-topic-color: ${topicColor}; --slider-topic-size: ${topicSize};`;
+				`--slider-author-color: ${authorColor}; --slider-author-size: ${authorSize}; --slider-author-font: ${authorFamily}; ` +
+				`--slider-title-color: ${titleColor}; --slider-title-size: ${titleSize}; --slider-title-font: ${titleFamily};  ` +
+				`--slider-topic-color: ${topicColor}; --slider-topic-size: ${topicSize}; --slider-topic-font: ${topicFamily};`;
 
 			// Helper to generate button styles dynamically
 			const getButtonStyles = (prefix, s) => {
@@ -88,6 +94,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 				(val) => val === true,
 			);
 
+			// Dynamically determine alignment class from JSON (e.g. center-right, center-left)
+			const alignmentClass = slide.alignment
+				? `align-${slide.alignment}`
+				: 'align-center-center';
+
 			// Generate HTML markup for each slide
 			const slideItemHTML = `
                 <div class="slide-item${isActive}${slideNrClass}" style="${styles}">
@@ -97,7 +108,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         ${
 							anyVisible
 								? `
-                            <div class="slide-content is-align-center">
+                            <div class="slide-content ${alignmentClass}">
                                 ${showContent.author && slide.author ? `<div class="slide-author">${slide.author}</div>` : ''}
                                 ${showContent.title && slide.title ? `<div class="slide-title">${slide.title}</div>` : ''}
                                 ${showContent.topic && slide.topic ? `<div class="slide-topic">${slide.topic}</div>` : ''}
@@ -145,7 +156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 /**
- * Core Slider Engine handling navigation, animations, autoplay, and parallax.
+ * Core Slider Engine handling navigation, animations, autoplay, parallax, touch/mouse swipe gestures, and configurable stop-on-hover.
  */
 function initializeSliderEngine(sliderContainer) {
 	let nextDom = sliderContainer.querySelector('#next');
@@ -157,6 +168,9 @@ function initializeSliderEngine(sliderContainer) {
 
 	const isAutoplayEnabled = sliderContainer.dataset.autoplay === 'true';
 	const dynamicInterval = parseInt(sliderContainer.dataset.interval) || 7000;
+	// Konfigurierbares Attribut: Standardmäßig true, außer data-stop-on-hover="false" wird explizit gesetzt
+	const isStopOnHoverEnabled =
+		sliderContainer.dataset.stopOnHover !== 'false';
 
 	if (!nextDom || !prevDom || !sliderDom || !paginationDom) return;
 
@@ -277,18 +291,86 @@ function initializeSliderEngine(sliderContainer) {
 	}
 
 	nextDom.onclick = () => showSlider('next');
-	prevDocClick = () => showSlider('prev'); // Fallback check
 	prevDom.onclick = () => showSlider('prev');
 
-	sliderContainer.onmouseenter = () => {
+	// Configurable Pause-on-Hover Handler
+	sliderContainer.addEventListener('mouseenter', () => {
+		if (!isStopOnHoverEnabled) return;
 		isPaused = true;
 		clearTimeout(runNextAuto);
-	};
+	});
 
-	sliderContainer.onmouseleave = () => {
+	sliderContainer.addEventListener('mouseleave', () => {
+		if (!isStopOnHoverEnabled) return;
 		isPaused = false;
 		if (isAutoplayEnabled) resetAutoPlay();
-	};
+	});
+
+	// Touch & Mouse Swipe Gestures Support (Mobile & Desktop PC)
+	let startX = 0;
+	let endX = 0;
+	let isDragging = false;
+	const minSwipeDistance = 50;
+
+	// Touch Events
+	sliderContainer.addEventListener(
+		'touchstart',
+		(e) => {
+			startX = e.changedTouches[0].screenX;
+			isPaused = true;
+			clearTimeout(runNextAuto);
+		},
+		{ passive: true },
+	);
+
+	sliderContainer.addEventListener(
+		'touchend',
+		(e) => {
+			endX = e.changedTouches[0].screenX;
+			handleSwipe();
+		},
+		{ passive: true },
+	);
+
+	// Mouse Events (Desktop Drag Simulation)
+	sliderContainer.addEventListener('mousedown', (e) => {
+		if (e.target.closest('a') || e.target.closest('button')) return;
+		startX = e.clientX;
+		isDragging = true;
+		isPaused = true;
+		clearTimeout(runNextAuto);
+		e.preventDefault();
+	});
+
+	window.addEventListener('mouseup', (e) => {
+		if (!isDragging) return;
+		endX = e.clientX;
+		isDragging = false;
+		handleSwipe();
+	});
+
+	sliderContainer.addEventListener('mouseleave', () => {
+		if (isDragging) {
+			isDragging = false;
+			isPaused = false;
+			if (isAutoplayEnabled) resetAutoPlay();
+		}
+	});
+
+	function handleSwipe() {
+		let distance = endX - startX;
+
+		if (Math.abs(distance) >= minSwipeDistance) {
+			if (distance < 0) {
+				showSlider('next');
+			} else {
+				showSlider('prev');
+			}
+		}
+
+		isPaused = false;
+		if (isAutoplayEnabled) resetAutoPlay();
+	}
 
 	sliderDom.querySelector('.slide-item:nth-child(1)').classList.add('active');
 	initPagination();

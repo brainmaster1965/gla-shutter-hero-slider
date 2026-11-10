@@ -1,7 +1,7 @@
 ================================================================================
 GLA SHUTTER HERO SLIDER
 ================================================================================
-Version: 1.0.0
+Version: 2.0.0
 Author: WebDevGLa
 License: Envato Standard / Commercial License
 
@@ -9,8 +9,9 @@ DESCRIPTION:
 --------------------------------------------------------------------------------
 Gla Shutter Hero Slider is a modern, ultra-responsive fullscreen hero slider 
 component for web projects. It features a unique shutter transition effect 
-(CSS clip-path), dynamic parallax background scrolling, hover autoplay-pause, 
-and full JSON-driven content management.
+(CSS clip-path), dynamic parallax background scrolling, configurable hover 
+autoplay-pause, global touch/mouse drag-to-swipe gestures, and full 
+JSON-driven content & alignment management.
 
 FEATURES:
 --------------------------------------------------------------------------------
@@ -18,14 +19,21 @@ FEATURES:
   No Swiper.js, No external libraries required).
 - Ultra Lightweight & Fast: Lightning-fast load times and zero risk of script
   conflicts with other plugins or frameworks.
-- Fullscreen Hero Layout
-- Dynamic JSON-driven slide rendering
-- Shutter reveal animation (CSS clip-path)
-- Smooth Parallax scroll effect
-- Responsive design across desktop, tablet, and mobile
-- Autoplay with hover pause control
-- Includes both source (unminified) and production (minified) CSS/JS files
-- Well-documented code & HTML documentation
+- Fullscreen Hero Layout with responsive mobile image scaling.
+- Modular Content Visibility: Toggle individual slide elements (author, title,
+  topic, description, buttons) on/off per slide via JSON.
+- Dynamic 9-Grid Content Placement: Freely position slide content (Top-Left, 
+  Center-Right, Bottom-Center, etc.) with precise alignment overrides.
+- Multi-Platform Gesture Support: Global touch-swipe (mobile) and desktop mouse 
+  drag-to-swipe interaction.
+- Text Selection Protection: CSS user-select protections prevent accidental text 
+  highlighting while dragging or clicking.
+- Configurable Pause-on-Hover: Control autoplay pause via HTML data attribute 
+  (data-stop-on-hover="true|false").
+- Dynamic JSON-driven slide rendering & button styling.
+- Shutter reveal animation (CSS clip-path) & Smooth Parallax scroll effect.
+- Maintained Clean Code Structure: Fully unminified source CSS and JS files for 
+  seamless customization and maintenance.
 
 DIRECTORY STRUCTURE:
 --------------------------------------------------------------------------------
@@ -35,6 +43,15 @@ DIRECTORY STRUCTURE:
 
 CHANGELOG:
 --------------------------------------------------------------------------------
+v2.0.0 (2026-11-08)
+- Added dynamic 9-grid vertical and horizontal content positioning via JSON alignment.
+- Added strict vertical CSS positioning overrides (top, bottom, center) in style.css.
+- Added global touch-swipe (mobile/tablet) and desktop mouse drag-to-swipe interaction.
+- Added configurable HTML attribute control for hover pause (data-stop-on-hover).
+- Added user-select protection in CSS to prevent unwanted text selection during drag.
+- Enhanced responsive mobile background image scaling.
+- Updated comprehensive HTML documentation to cover all v2.0.0 enhancements.
+
 v1.0.0 (2026-11-07)
 - Initial commercial release
 - Standalone HTML/CSS/JS engine with dynamic JSON loading

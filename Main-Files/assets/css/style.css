@@ -2,8 +2,8 @@
  * ==============================================================================
  * Project Name: Gla Shutter Hero Slider
  * Description: Premium Fullscreen Hero Slider with Shutter Effect & Parallax
- * Version: 1.0.0
- * Author: Your Name / Agency
+ * Version: 2.0.0
+ * Author: WebDevGLa
  * License: Commercial / MIT
  * ==============================================================================
  */
@@ -38,6 +38,10 @@
 	max-width: none !important;
 	overflow: hidden;
 	background-color: #000;
+	-webkit-user-select: none; /* Safari */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE/Edge */
+	user-select: none; /* Standard */
 }
 
 .wp-block-gla-heroslider .slide-list {
@@ -69,7 +73,7 @@
 	transition: clip-path 0s;
 }
 
-/* Parallax Image Styling */
+/* Parallax Image Styling & v2.0.0 Responsive Scaling */
 .wp-block-gla-heroslider .slide-list .slide-item img {
 	width: 100%;
 	height: 150vh;
@@ -83,6 +87,13 @@
 		transform 0.1s ease-out,
 		opacity 0.6s ease-in;
 	transform: translateY(var(--parallax-offset, 0));
+	-webkit-user-drag: none; /* Verhindert das "Wegziehen" des Bildes im Browser */
+}
+
+@media (max-width: 1024px) {
+	.wp-block-gla-heroslider .slide-list .slide-item img {
+		height: 120vh;
+	}
 }
 
 @media (max-width: 767px) {
@@ -112,24 +123,52 @@
 	box-sizing: border-box;
 }
 
-.wp-block-gla-heroslider .slide-content.is-align-left {
-	text-align: left;
+@media (max-width: 767px) {
+	.wp-block-gla-heroslider .slide-list .slide-item .slide-content {
+		padding: 0 20px;
+	}
 }
-.wp-block-gla-heroslider .slide-content.is-align-left .slide-buttons {
+
+/* Alignment Helper Classes (Supporting both is-align-* and JSON values like top-right, center-center) */
+.wp-block-gla-heroslider .slide-content.is-align-left,
+.wp-block-gla-heroslider .slide-content.align-top-left,
+.wp-block-gla-heroslider .slide-content.align-center-left,
+.wp-block-gla-heroslider .slide-content.align-bottom-left {
+	text-align: left;
+	align-items: flex-start;
+}
+.wp-block-gla-heroslider .slide-content.is-align-left .slide-buttons,
+.wp-block-gla-heroslider .slide-content.align-top-left .slide-buttons,
+.wp-block-gla-heroslider .slide-content.align-center-left .slide-buttons,
+.wp-block-gla-heroslider .slide-content.align-bottom-left .slide-buttons {
 	justify-content: flex-start;
 }
 
-.wp-block-gla-heroslider .slide-content.is-align-center {
+.wp-block-gla-heroslider .slide-content.is-align-center,
+.wp-block-gla-heroslider .slide-content.align-top-center,
+.wp-block-gla-heroslider .slide-content.align-center-center,
+.wp-block-gla-heroslider .slide-content.align-bottom-center {
 	text-align: center;
+	align-items: center;
 }
-.wp-block-gla-heroslider .slide-content.is-align-center .slide-buttons {
+.wp-block-gla-heroslider .slide-content.is-align-center .slide-buttons,
+.wp-block-gla-heroslider .slide-content.align-top-center .slide-buttons,
+.wp-block-gla-heroslider .slide-content.align-center-center .slide-buttons,
+.wp-block-gla-heroslider .slide-content.align-bottom-center .slide-buttons {
 	justify-content: center;
 }
 
-.wp-block-gla-heroslider .slide-content.is-align-right {
+.wp-block-gla-heroslider .slide-content.is-align-right,
+.wp-block-gla-heroslider .slide-content.align-top-right,
+.wp-block-gla-heroslider .slide-content.align-center-right,
+.wp-block-gla-heroslider .slide-content.align-bottom-right {
 	text-align: right;
+	align-items: flex-end;
 }
-.wp-block-gla-heroslider .slide-content.is-align-right .slide-buttons {
+.wp-block-gla-heroslider .slide-content.is-align-right .slide-buttons,
+.wp-block-gla-heroslider .slide-content.align-top-right .slide-buttons,
+.wp-block-gla-heroslider .slide-content.align-center-right .slide-buttons,
+.wp-block-gla-heroslider .slide-content.align-bottom-right .slide-buttons {
 	justify-content: flex-end;
 }
 
@@ -399,4 +438,57 @@
 	.slide-wrapper {
 	transition: clip-path 0s;
 	clip-path: inset(0 0 0 0);
+}
+
+/* ==============================================================================
+   v2.0.0 Addition: Vertical Positioning Overrides
+   Overrides the translateY(-50%) statically defined in .slide-content!
+   ============================================================================== */
+
+.wp-block-gla-heroslider .slide-list .slide-item .slide-content.align-top-left,
+.wp-block-gla-heroslider
+	.slide-list
+	.slide-item
+	.slide-content.align-top-center,
+.wp-block-gla-heroslider
+	.slide-list
+	.slide-item
+	.slide-content.align-top-right {
+	top: 100px !important;
+	bottom: auto !important;
+	transform: translateX(-50%) !important;
+}
+
+.wp-block-gla-heroslider
+	.slide-list
+	.slide-item
+	.slide-content.align-center-left,
+.wp-block-gla-heroslider
+	.slide-list
+	.slide-item
+	.slide-content.align-center-center,
+.wp-block-gla-heroslider
+	.slide-list
+	.slide-item
+	.slide-content.align-center-right {
+	top: 50% !important;
+	bottom: auto !important;
+	transform: translate(-50%, -50%) !important;
+}
+
+.wp-block-gla-heroslider
+	.slide-list
+	.slide-item
+	.slide-content.align-bottom-left,
+.wp-block-gla-heroslider
+	.slide-list
+	.slide-item
+	.slide-content.align-bottom-center,
+.wp-block-gla-heroslider
+	.slide-list
+	.slide-item
+	.slide-content.align-bottom-right {
+	top: auto !important;
+	bottom: 80px !important;
+	transform: translateX(-50%) !important;
 }
