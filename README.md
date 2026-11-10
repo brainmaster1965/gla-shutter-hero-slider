@@ -14,7 +14,7 @@
 ## 🚀 Live Demo
 
 Check out the interactive live demo deployed on Netlify:  
-👉 **[View Live Demo](https://gla-hero-shutter-slider.netlify.app)**
+👉 **[View Live Demo](https://gla-shutter-hero-slider.netlify.app)**
 
 ---
 
@@ -84,21 +84,21 @@ Add the slider container with custom data attributes to your page:
 
 ```html
 <div
-    class="wp-block-gla-heroslider"
-    data-autoplay="true"
-    data-interval="7000"
-    data-stop-on-hover="true"
-    data-hide-progress="false"
-    data-hide-navigation="false"
-    data-hide-pagination="false"
+	class="wp-block-gla-heroslider"
+	data-autoplay="true"
+	data-interval="7000"
+	data-stop-on-hover="true"
+	data-hide-progress="false"
+	data-hide-navigation="false"
+	data-hide-pagination="false"
 >
-    <div class="slide-list"></div>
-    <div class="slide-arrows">
-        <button id="prev">&lt;</button>
-        <button id="next">&gt;</button>
-    </div>
-    <div class="slide-pagination"></div>
-    <div class="slide-time"></div>
+	<div class="slide-list"></div>
+	<div class="slide-arrows">
+		<button id="prev">&lt;</button>
+		<button id="next">&gt;</button>
+	</div>
+	<div class="slide-pagination"></div>
+	<div class="slide-time"></div>
 </div>
 ```
 
@@ -108,56 +108,56 @@ Manage content, visibility, positioning, and button styles easily without alteri
 
 ```json
 {
-    "settings": {
-        "version": "2.1.0"
-    },
-    "slides": {
-        "slide1": {
-            "showContent": {
-                "author": true,
-                "title": true,
-                "topic": true,
-                "description": true,
-                "button1": true,
-                "button2": true
-            },
-            "author": "AUTHOR 1",
-            "title": "TITLE 1",
-            "topic": "TOPIC 1",
-            "description": "Discover premium web components built with pure HTML, CSS, and modern JavaScript.",
-            "imageUrl": "assets/images/img1.jpg",
-            "alignment": "bottom-right",
-            "authorColor": "#ffffff",
-            "authorFontSize": 24,
-            "authorFontFamily": "Open sans, sans-serif",
-            "titleColor": "#ffffff",
-            "titleFontSize": 48,
-            "titleFontFamily": "Open sans, sans-serif",
-            "topicColor": "#f1683a",
-            "topicFontSize": 48,
-            "topicFontFamily": "Open sans, sans-serif",
-            "button1Text": "SEE MORE",
-            "button1Url": "#",
-            "button1Color": "#eee",
-            "button1TextColor": "#000",
-            "button1HoverColor": "#f1683a",
-            "button1HoverTextColor": "#fff",
-            "button1BorderRadius": 4,
-            "button1Outline": true,
-            "button1OutlineColor": "#fff",
-            "button1OutlineWidth": 1,
-            "button2Text": "SUBSCRIBE",
-            "button2Url": "#",
-            "button2Color": "transparent",
-            "button2TextColor": "#fff",
-            "button2HoverColor": "#f1683a",
-            "button2HoverTextColor": "#fff",
-            "button2BorderRadius": 4,
-            "button2Outline": true,
-            "button2OutlineColor": "#fff",
-            "button2OutlineWidth": 1
-        }
-    }
+	"settings": {
+		"version": "2.1.0"
+	},
+	"slides": {
+		"slide1": {
+			"showContent": {
+				"author": true,
+				"title": true,
+				"topic": true,
+				"description": true,
+				"button1": true,
+				"button2": true
+			},
+			"author": "AUTHOR 1",
+			"title": "TITLE 1",
+			"topic": "TOPIC 1",
+			"description": "Discover premium web components built with pure HTML, CSS, and modern JavaScript.",
+			"imageUrl": "assets/images/img1.jpg",
+			"alignment": "bottom-right",
+			"authorColor": "#ffffff",
+			"authorFontSize": 24,
+			"authorFontFamily": "Open sans, sans-serif",
+			"titleColor": "#ffffff",
+			"titleFontSize": 48,
+			"titleFontFamily": "Open sans, sans-serif",
+			"topicColor": "#f1683a",
+			"topicFontSize": 48,
+			"topicFontFamily": "Open sans, sans-serif",
+			"button1Text": "SEE MORE",
+			"button1Url": "#",
+			"button1Color": "#eee",
+			"button1TextColor": "#000",
+			"button1HoverColor": "#f1683a",
+			"button1HoverTextColor": "#fff",
+			"button1BorderRadius": 4,
+			"button1Outline": true,
+			"button1OutlineColor": "#fff",
+			"button1OutlineWidth": 1,
+			"button2Text": "SUBSCRIBE",
+			"button2Url": "#",
+			"button2Color": "transparent",
+			"button2TextColor": "#fff",
+			"button2HoverColor": "#f1683a",
+			"button2HoverTextColor": "#fff",
+			"button2BorderRadius": 4,
+			"button2Outline": true,
+			"button2OutlineColor": "#fff",
+			"button2OutlineWidth": 1
+		}
+	}
 }
 ```
 
@@ -165,14 +165,14 @@ Manage content, visibility, positioning, and button styles easily without alteri
 
 ## ⚙️ Data Attributes
 
-| Attribute             | Type    | Default | Description                                                                                      |
-| :-------------------- | :------ | :------ | :----------------------------------------------------------------------------------------------- |
-| `data-autoplay`       | Boolean | `true`  | Enables or disables automatic slide transitions.                                                 |
-| `data-interval`       | Number  | `7000`  | Sets slide transition interval in milliseconds.                                                  |
-| `data-stop-on-hover`  | Boolean | `true`  | Pauses autoplay when hovering over the slider. Set to `false` to keep autoplay running on hover. |
-| `data-hide-progress`  | Boolean | `false` | Hides or shows the top progress bar.                                                             |
-| `data-hide-navigation`| Boolean | `false` | Hides or shows the navigation arrows (`prev`/`next`).                                            |
-| `data-hide-pagination`| Boolean | `false` | Hides or shows the pagination dots.                                                              |
+| Attribute              | Type    | Default | Description                                                                                      |
+| :--------------------- | :------ | :------ | :----------------------------------------------------------------------------------------------- |
+| `data-autoplay`        | Boolean | `true`  | Enables or disables automatic slide transitions.                                                 |
+| `data-interval`        | Number  | `7000`  | Sets slide transition interval in milliseconds.                                                  |
+| `data-stop-on-hover`   | Boolean | `true`  | Pauses autoplay when hovering over the slider. Set to `false` to keep autoplay running on hover. |
+| `data-hide-progress`   | Boolean | `false` | Hides or shows the top progress bar.                                                             |
+| `data-hide-navigation` | Boolean | `false` | Hides or shows the navigation arrows (`prev`/`next`).                                            |
+| `data-hide-pagination` | Boolean | `false` | Hides or shows the pagination dots.                                                              |
 
 ---
 
