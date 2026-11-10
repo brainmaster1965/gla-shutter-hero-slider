@@ -1,7 +1,7 @@
 ================================================================================
 GLA SHUTTER HERO SLIDER
 ================================================================================
-Version: 2.1.0
+Version: 2.2.0
 Author: WebDevGLa
 License: Envato Standard / Commercial License
 
@@ -43,6 +43,17 @@ DIRECTORY STRUCTURE:
 
 CHANGELOG:
 --------------------------------------------------------------------------------
+### v2.2.0 (2026-11-10)
+
+- **Engine & DOM Integrity:** Fixed a critical bug where slide jumps via pagination
+  (especially across slides > 2 or larger distances) could desynchronize the internal
+  DOM queue and the carousel's Z-index hierarchy.
+- **Pagination Optimization:** Non-adjacent pagination buttons are now intelligently
+  managed and restricted during active animations to completely prevent visual glitches
+  (such as overlapping shutter transitions on distant jumps) and subsequent navigation desyncs.
+- **Enhanced Stability:** Ensures permanent, robust synchronization between `globalCurrentIndex`,
+  the `.slide-list` child nodes, and all navigation controls (arrows, swipe gestures, and pagination).
+
 v2.1.0 (2026-11-09)
 - Minor bugfixes & improvements.
 - Missing FontFamily added to author, title & topic.

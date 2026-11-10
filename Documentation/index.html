@@ -107,7 +107,7 @@
 		<div class="container">
 			<header>
 				<h1>
-					Gla Shutter Hero Slider <span class="badge">v2.1.0</span>
+					Gla Shutter Hero Slider <span class="badge">v2.2.0</span>
 				</h1>
 				<p style="color: var(--text-muted)">
 					Comprehensive Documentation & Guide by
@@ -143,9 +143,9 @@
 				</div>
 				<ul>
 					<li>
-						<strong>Hide non desired elements:</strong> With V2.1.0
-						red progress timer on top (bar), nav-buttons &
-						pagination-dots can be hidden via HTML data attributes
+						<strong>Hide non desired elements:</strong> Progress
+						timer on top (bar), nav-buttons & pagination-dots can be
+						hidden via HTML data attributes
 						(<code>data-hide-progress</code>,
 						<code>data-hide-navigation</code>,
 						<code>data-hide-pagination</code>)
@@ -154,7 +154,7 @@
 					<li>
 						<strong>Fullscreen Hero Experience:</strong> Perfectly
 						scales across all desktop and mobile viewports with
-						v2.0.0 responsive image optimizations.
+						responsive image optimizations.
 					</li>
 					<li>
 						<strong>Shutter Reveal Transition:</strong> Smooth
@@ -185,10 +185,11 @@
 					</li>
 					<li>
 						<strong>Interactive Controls & Gestures:</strong>
-						Features navigation arrows, dynamic pagination dots,
-						progress timer bar, global touch & desktop mouse
-						drag-to-swipe support, and configurable stop-on-hover
-						functionality.
+						Features navigation arrows, dynamic pagination dots
+						(optimized with robust neighbor-navigation & queue
+						protection for v2.2.0), progress timer bar, global touch
+						& desktop mouse drag-to-swipe support, and configurable
+						stop-on-hover functionality.
 					</li>
 				</ul>
 			</section>
@@ -207,9 +208,11 @@
     ├── index.html                   # Demo landing page with header/footer
     └── assets/
         ├── css/
-        │   └── style.css            # Full, unminified CSS source code (v2.1.0)
+        │   ├── style.css            # Full, unminified CSS source code (v2.2.0)
+        │   └── style.min.css        # Production-ready minified CSS (v2.2.0)
         ├── js/
-        │   └── script.js            # Full, unminified JavaScript engine source (v2.1.0)
+        │   ├── script.js            # Full, unminified JavaScript engine source (v2.2.0)
+        │   └── script.min.js        # Production-ready minified JavaScript engine (v2.2.0)
         ├── json/
         │   └── slides.json          # Central data source for all slides
         └── images/                  # Media assets directory
@@ -287,7 +290,7 @@
 				</p>
 				<pre><code>{
   "settings": {
-    "version": "2.0.0"
+    "version": "2.2.0"
   },
   "slides": {
     "slide1": {
@@ -307,10 +310,13 @@
       "imageUrl": "assets/images/img1.jpg",
       "authorColor": "#ffffff",
       "authorFontSize": 24,
+      "authorFontFamily": "Open sans, sans-serif",
       "titleColor": "#ffffff",
       "titleFontSize": 48,
+      "titleFontFamily": "Open sans, sans-serif",
       "topicColor": "#f1683a",
       "topicFontSize": 48,
+      "topicFontFamily": "Open sans, sans-serif",
       "button1Text": "SEE MORE",
       "button1Url": "#",
       "button1Color": "#eee",
@@ -399,7 +405,6 @@
 								Hides the bottom pagination dots when set to
 								<code>true</code>.
 							</td>
-						</tr>
 						</tr>
 					</tbody>
 				</table>

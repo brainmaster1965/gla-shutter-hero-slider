@@ -2,7 +2,7 @@
  * ==============================================================================
  * Project Name: Gla Shutter Hero Slider
  * Description: Dynamic JSON parser and slider engine (Shutter + Parallax)
- * Version: 2.1.0
+ * Version: 2.2.0
  * Author: WebDevGLa
  * License: Commercial / MIT
  * ==============================================================================
@@ -163,12 +163,10 @@ function initializeSliderEngine(sliderContainer) {
 	let prevDom = sliderContainer.querySelector('#prev');
 	let sliderDom = sliderContainer.querySelector('.slide-list');
 	let paginationDom = sliderContainer.querySelector('.slide-pagination');
-	let timeDom = sliderContainer.querySelector('.slide-time');
 	let isPaused = false;
 
 	const isAutoplayEnabled = sliderContainer.dataset.autoplay === 'true';
 	const dynamicInterval = parseInt(sliderContainer.dataset.interval) || 7000;
-	// Konfigurierbares Attribut: Standardmäßig true, außer data-stop-on-hover="false" wird explizit gesetzt
 	const isStopOnHoverEnabled =
 		sliderContainer.dataset.stopOnHover !== 'false';
 
@@ -176,10 +174,6 @@ function initializeSliderEngine(sliderContainer) {
 
 	let timeRunning = 1500;
 	let timeAutoNext = dynamicInterval;
-
-	// if (!isAutoplayEnabled && timeDom) {	// v2.1.0 removed
-	// 	timeDom.style.display = 'none';
-	// }
 
 	let numItems = sliderDom.querySelectorAll('.slide-item').length;
 	let globalCurrentIndex = 0;
@@ -192,6 +186,35 @@ function initializeSliderEngine(sliderContainer) {
 		if (allButtons[newIndex]) {
 			allButtons[newIndex].classList.add('active');
 		}
+		updateValidPaginationState();
+	}
+
+	function updateValidPaginationState() {
+		let allButtons = paginationDom.querySelectorAll('button');
+		allButtons.forEach((btn, idx) => {
+			let isNextNeighbor = idx === (globalCurrentIndex + 1) % numItems;
+			let isPrevNeighbor =
+				idx === (globalCurrentIndex - 1 + numItems) % numItems;
+			let isActive = idx === globalCurrentIndex;
+
+			if (isNextNeighbor || isPrevNeighbor || isActive) {
+				btn.style.opacity = '1';
+				btn.style.cursor = 'pointer';
+				btn.style.pointerEvents = 'auto';
+			} else {
+				// btn.style.opacity = '0.3';
+				btn.style.cursor = 'default';
+				btn.style.pointerEvents = 'none';
+			}
+		});
+	}
+
+	function releaseUI() {
+		nextDom.style.pointerEvents = '';
+		prevDom.style.pointerEvents = '';
+		paginationDom.classList.remove('is-disabled');
+		sliderContainer.classList.remove('is-animating');
+		updateValidPaginationState();
 	}
 
 	function initPagination() {
@@ -205,45 +228,33 @@ function initializeSliderEngine(sliderContainer) {
 				let targetIndex = parseInt(this.dataset.index);
 				let activeIndex = globalCurrentIndex;
 
-				if (targetIndex !== activeIndex) {
-					if (isAutoplayEnabled) resetAutoPlay();
+				let isNextNeighbor =
+					targetIndex === (activeIndex + 1) % numItems;
+				let isPrevNeighbor =
+					targetIndex === (activeIndex - 1 + numItems) % numItems;
 
-					let distance = targetIndex - activeIndex;
-					let clicks = Math.abs(distance);
-					let isNext =
-						(distance > 0 && clicks <= numItems / 2) ||
-						(distance < 0 && clicks > numItems / 2);
+				if (
+					(isNextNeighbor || isPrevNeighbor) &&
+					!sliderContainer.classList.contains('is-animating')
+				) {
+					if (isAutoplayEnabled) resetAutoPlay();
 
 					nextDom.style.pointerEvents = 'none';
 					prevDom.style.pointerEvents = 'none';
+					paginationDom.classList.add('is-disabled');
+					sliderContainer.classList.add('is-animating');
 
-					function executeClickSequence(k) {
-						if (k >= clicks) {
-							setTimeout(() => {
-								nextDom.style.pointerEvents = '';
-								prevDom.style.pointerEvents = '';
-							}, timeRunning);
-							return;
-						}
-						setTimeout(() => {
-							showSlider(isNext ? 'next' : 'prev', false);
-							executeClickSequence(k + 1);
-						}, timeRunning);
-					}
+					let direction = isNextNeighbor ? 'next' : 'prev';
 
-					showSlider(isNext ? 'next' : 'prev', false);
-					if (clicks > 1) {
-						executeClickSequence(1);
-					} else {
-						setTimeout(() => {
-							nextDom.style.pointerEvents = '';
-							prevDom.style.pointerEvents = '';
-						}, timeRunning);
-					}
+					showSlider(direction, false);
+					setTimeout(() => {
+						releaseUI();
+					}, timeRunning);
 				}
 			};
 			paginationDom.appendChild(button);
 		}
+		updateValidPaginationState();
 	}
 
 	function resetAutoPlay() {
@@ -290,8 +301,19 @@ function initializeSliderEngine(sliderContainer) {
 		if (autoPlayReset) resetAutoPlay();
 	}
 
-	nextDom.onclick = () => showSlider('next');
-	prevDom.onclick = () => showSlider('prev');
+	nextDom.onclick = () => {
+		if (sliderContainer.classList.contains('is-animating')) return;
+		sliderContainer.classList.add('is-animating');
+		showSlider('next');
+		setTimeout(() => releaseUI(), timeRunning);
+	};
+
+	prevDom.onclick = () => {
+		if (sliderContainer.classList.contains('is-animating')) return;
+		sliderContainer.classList.add('is-animating');
+		showSlider('prev');
+		setTimeout(() => releaseUI(), timeRunning);
+	};
 
 	// Configurable Pause-on-Hover Handler
 	sliderContainer.addEventListener('mouseenter', () => {
@@ -306,13 +328,12 @@ function initializeSliderEngine(sliderContainer) {
 		if (isAutoplayEnabled) resetAutoPlay();
 	});
 
-	// Touch & Mouse Swipe Gestures Support (Mobile & Desktop PC)
+	// Touch & Mouse Swipe Gestures Support
 	let startX = 0;
 	let endX = 0;
 	let isDragging = false;
 	const minSwipeDistance = 50;
 
-	// Touch Events
 	sliderContainer.addEventListener(
 		'touchstart',
 		(e) => {
@@ -332,7 +353,6 @@ function initializeSliderEngine(sliderContainer) {
 		{ passive: true },
 	);
 
-	// Mouse Events (Desktop Drag Simulation)
 	sliderContainer.addEventListener('mousedown', (e) => {
 		if (e.target.closest('a') || e.target.closest('button')) return;
 		startX = e.clientX;
