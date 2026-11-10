@@ -1,7 +1,7 @@
 ================================================================================
 GLA SHUTTER HERO SLIDER
 ================================================================================
-Version: 2.2.0
+Version: 2.3.0
 Author: WebDevGLa
 License: Envato Standard / Commercial License
 
@@ -30,6 +30,10 @@ FEATURES:
   highlighting while dragging or clicking.
 - Configurable Pause-on-Hover: Control autoplay pause via HTML data attribute 
   (data-stop-on-hover="true|false").
+- Accessible by default: labeled controls, inert hidden slides and support for
+  the OS setting "reduce motion" (prefers-reduced-motion).
+- Single source for timing: shutter duration is one CSS variable
+  (--shutter-duration in style.css), read by the script.
 - Dynamic JSON-driven slide rendering & button styling.
 - Shutter reveal animation (CSS clip-path) & Smooth Parallax scroll effect.
 - Maintained Clean Code Structure: Fully unminified source CSS and JS files for 
@@ -43,6 +47,38 @@ DIRECTORY STRUCTURE:
 
 CHANGELOG:
 --------------------------------------------------------------------------------
+### v2.3.0 (2026-11-10)
+
+- **Fixed - Swipe during animation:** A swipe performed while a shutter transition was
+  still running bypassed the animation lock and desynchronized the DOM queue and the
+  pagination (e.g. slide 2 visible, dot 3 active). Swipes now go through the arrow
+  buttons and are ignored while animating.
+- **Fixed - Hover pause after mouse drag:** After a desktop drag-to-swipe, autoplay
+  resumed although the pointer was still over the slider. data-stop-on-hover is now
+  respected after a drag.
+- **Fixed - Aborted touch gestures:** A touchcancel event (e.g. when the browser takes
+  over for vertical scrolling) left autoplay paused permanently. Autoplay now resumes.
+- **Fixed - Horizontal scrollbar:** The slider used width: 100vw, which includes the
+  scrollbar width and could cause horizontal scrolling on systems with classic
+  scrollbars. It now uses width: 100%.
+- **Fixed - Mobile viewport height:** Height uses 100svh (with 100vh fallback), so the
+  hero no longer jumps when the mobile address bar collapses.
+- **Fixed - Broken markup with special characters:** alt, src and href values from
+  slides.json are now escaped, so quotes in titles or URLs can no longer break the
+  generated HTML. Text fields remain HTML-capable (e.g. <br>).
+- **Improved - Single source for timing:** The shutter duration is defined once as CSS
+  custom property --shutter-duration and read by the script (previously hardcoded in
+  JS and CSS).
+- **Improved - Visible error message:** If slides.json cannot be loaded, the slider
+  shows a message (incl. a hint for file:// usage) instead of a blank black screen.
+- **Improved - Accessibility:** aria-label on arrows and pagination dots, aria-current
+  on the active dot, hidden slides are inert (no stray keyboard focus), and
+  prefers-reduced-motion disables shutter, parallax and text animation.
+- **Improved - Touch handling:** Added touch-action: pan-y so vertical page scrolling
+  stays smooth while horizontal swipes are handled by the slider.
+- **Cleanup:** Removed duplicate display declarations in style.css, numbered the demo
+  texts in slides.json. All files re-versioned to 2.3.0.
+
 ### v2.2.0 (2026-11-10)
 
 - **Engine & DOM Integrity:** Fixed a critical bug where slide jumps via pagination

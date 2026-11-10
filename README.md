@@ -1,8 +1,8 @@
-# Gla Shutter Hero Slider <span style="background-color: #f1683a; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; font-weight: 600; vertical-align: middle;">v2.2.0</span>
+# Gla Shutter Hero Slider <span style="background-color: #f1683a; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; font-weight: 600; vertical-align: middle;">v2.3.0</span>
 
 ![Gla Shutter Hero Slider Preview](preview.png)
 
-> An ultra-fast, lightweight (<8kB), and modern fullscreen hero slider component with a cinematic shutter reveal transition and parallax depth effect. Built with **100% pure Vanilla JavaScript and native CSS**.
+> An ultra-fast, lightweight (<5kB gzipped), and modern fullscreen hero slider component with a cinematic shutter reveal transition and parallax depth effect. Built with **100% pure Vanilla JavaScript and native CSS**.
 
 [![Dependency Free](https://img.shields.io/badge/dependencies-none-success.svg)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -21,7 +21,7 @@ Check out the interactive live demo deployed on Netlify:
 ## ✨ Key Features
 
 - **100% Dependency-Free:** Zero jQuery, Zero Swiper.js, Zero external libraries required.
-- **Blazing Fast (<8kB total weight):** Minimal execution footprint, DOM loaded in sub-150ms.
+- **Blazing Fast (<5kB total weight, gzipped):** Minimal execution footprint, DOM loaded in sub-150ms.
 - **Cinematic Shutter Reveal Effect:** Smooth `clip-path` CSS transitions between slide switches.
 - **Scroll-Driven Parallax Depth:** Adds immersive visual depth as the user scrolls.
 - **Modular Content Visibility:** Toggle individual slide elements (author, title, topic, description, buttons) on/off per slide via JSON settings without altering HTML.
@@ -29,6 +29,8 @@ Check out the interactive live demo deployed on Netlify:
 - **Multi-Platform Gesture Support:** Global touch-swipe (mobile/tablet) and desktop mouse drag-to-swipe interaction for intuitive navigation.
 - **Text Selection Protection:** Native CSS `user-select` rules prevent accidental text highlighting during drag or click gestures.
 - **Configurable Pause-on-Hover:** Control autoplay pausing directly via HTML data attribute (`data-stop-on-hover="true|false"`).
+- **Accessible by Default:** Labeled arrows and pagination dots, `aria-current` on the active dot, hidden slides are `inert` (no stray keyboard focus), and `prefers-reduced-motion` is respected.
+- **Single Source for Timing:** The shutter duration lives in one place (`--shutter-duration` in `style.css`) and is read by the script, so CSS and JS can never drift apart.
 - **JSON-Driven Architecture:** Effortlessly update titles, topics, colors, links, borders, and buttons via `slides.json`.
 - **Clean & Unminified Codebase:** Fully documented, unminified source files kept clean for easy commercial distribution, theme integration, and maintenance.
 
@@ -49,10 +51,10 @@ gla-shutter-hero-slider/
     ├── index.html          # Interactive Showcase Landing Page
     └── assets/
         ├── css/
-        │   ├── style.css       # Full Unminified CSS Source (v2.2.0)
+        │   ├── style.css       # Full Unminified CSS Source (v2.3.0)
         │   └── style.min.css   # Minified CSS Production File
         ├── js/
-        │   ├── script.js       # Full Unminified JS Engine (v2.2.0)
+        │   ├── script.js       # Full Unminified JS Engine (v2.3.0)
         │   └── script.min.js   # Minified JS Production File
         ├── json/
         │   └── slides.json     # Central Configuration File
@@ -109,7 +111,7 @@ Manage content, visibility, positioning, and button styles easily without alteri
 ```json
 {
 	"settings": {
-		"version": "2.1.0"
+		"version": "2.3.0"
 	},
 	"slides": {
 		"slide1": {
@@ -176,7 +178,29 @@ Manage content, visibility, positioning, and button styles easily without alteri
 
 ---
 
+## 🎛️ CSS Custom Properties
+
+| Property             | Default  | Description                                                                                                  |
+| :------------------- | :------- | :----------------------------------------------------------------------------------------------------------- |
+| `--shutter-duration` | `1500ms` | Duration of the shutter reveal and the progress bar. Set it on `.wp-block-gla-heroslider`; accepts `ms` or `s`. |
+
+---
+
 ## 🔄 Changelog
+
+### v2.3.0 (2026-11-10)
+
+- **Fixed – Swipe during animation:** A swipe gesture performed while a shutter transition was still running bypassed the animation lock and desynchronized the DOM queue and the pagination (e.g. slide 2 visible, dot 3 active). Swipes now go through the arrow buttons and are ignored while animating.
+- **Fixed – Hover pause after mouse drag:** After a desktop drag-to-swipe, autoplay resumed even though the pointer was still over the slider. `data-stop-on-hover` is now respected after a drag.
+- **Fixed – Aborted touch gestures:** A `touchcancel` event (e.g. when the browser takes over for vertical scrolling) left autoplay paused permanently. Autoplay now resumes correctly.
+- **Fixed – Horizontal scrollbar:** The slider used `width: 100vw`, which includes the scrollbar width and could cause horizontal scrolling on systems with classic scrollbars. It now uses `width: 100%`.
+- **Fixed – Mobile viewport height:** Height uses `100svh` (with `100vh` fallback), so the hero no longer jumps when the mobile browser address bar collapses.
+- **Fixed – Broken markup with special characters:** `alt`, `src` and `href` values from `slides.json` are now escaped, so quotes in titles or URLs can no longer break the generated HTML. Text fields remain HTML-capable (e.g. `<br>`).
+- **Improved – Single source for timing:** The shutter duration is now defined once as CSS custom property `--shutter-duration` and read by the script (previously hardcoded in JS and CSS).
+- **Improved – Visible error message:** If `slides.json` cannot be loaded, the slider shows a message (including a hint for `file://` usage) instead of a blank black screen.
+- **Improved – Accessibility:** `aria-label` on prev/next arrows and pagination dots, `aria-current` on the active dot, hidden slides are `inert` so their links no longer receive keyboard focus, and `prefers-reduced-motion` disables shutter, parallax and text animation.
+- **Improved – Touch handling:** Added `touch-action: pan-y` so vertical page scrolling stays smooth while horizontal swipes are handled by the slider.
+- **Cleanup:** Removed duplicate `display` declarations in `style.css`, numbered the demo texts in `slides.json`, corrected the file size claim (gzipped), and updated the JSON example version. All files re-versioned to 2.3.0.
 
 ### v2.2.0 (2026-11-10)
 

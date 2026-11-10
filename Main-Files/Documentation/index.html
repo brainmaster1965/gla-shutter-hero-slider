@@ -107,7 +107,7 @@
 		<div class="container">
 			<header>
 				<h1>
-					Gla Shutter Hero Slider <span class="badge">v2.2.0</span>
+					Gla Shutter Hero Slider <span class="badge">v2.3.0</span>
 				</h1>
 				<p style="color: var(--text-muted)">
 					Comprehensive Documentation & Guide by
@@ -187,9 +187,15 @@
 						<strong>Interactive Controls & Gestures:</strong>
 						Features navigation arrows, dynamic pagination dots
 						(optimized with robust neighbor-navigation & queue
-						protection for v2.2.0), progress timer bar, global touch
+						protection for v2.3.0), progress timer bar, global touch
 						& desktop mouse drag-to-swipe support, and configurable
 						stop-on-hover functionality.
+					</li>
+					<li>
+						<strong>Accessibility & Motion Preferences:</strong>
+						Labeled arrows and pagination dots, hidden slides are
+						<code>inert</code> (no stray keyboard focus), and the OS
+						setting <em>reduce motion</em> is respected.
 					</li>
 				</ul>
 			</section>
@@ -208,11 +214,11 @@
     ├── index.html                   # Demo landing page with header/footer
     └── assets/
         ├── css/
-        │   ├── style.css            # Full, unminified CSS source code (v2.2.0)
-        │   └── style.min.css        # Production-ready minified CSS (v2.2.0)
+        │   ├── style.css            # Full, unminified CSS source code (v2.3.0)
+        │   └── style.min.css        # Production-ready minified CSS (v2.3.0)
         ├── js/
-        │   ├── script.js            # Full, unminified JavaScript engine source (v2.2.0)
-        │   └── script.min.js        # Production-ready minified JavaScript engine (v2.2.0)
+        │   ├── script.js            # Full, unminified JavaScript engine source (v2.3.0)
+        │   └── script.min.js        # Production-ready minified JavaScript engine (v2.3.0)
         ├── json/
         │   └── slides.json          # Central data source for all slides
         └── images/                  # Media assets directory
@@ -290,7 +296,7 @@
 				</p>
 				<pre><code>{
   "settings": {
-    "version": "2.2.0"
+    "version": "2.3.0"
   },
   "slides": {
     "slide1": {
@@ -411,7 +417,32 @@
 			</section>
 
 			<section class="card">
-				<h2>6. Browser Support & Requirements</h2>
+				<h2>6. CSS Custom Properties & Accessibility</h2>
+				<p>
+					The shutter timing is defined in exactly one place. Change
+					<code>--shutter-duration</code> in
+					<code>style.css</code> (or override it on
+					<code>.wp-block-gla-heroslider</code>) and both the CSS
+					transition and the JavaScript timers follow automatically.
+					Both <code>ms</code> and <code>s</code> units are supported.
+				</p>
+				<pre><code>.wp-block-gla-heroslider {
+    --shutter-duration: 1200ms; /* default: 1500ms */
+}</code></pre>
+				<p>
+					Users who enabled <em>reduce motion</em> in their operating
+					system automatically get an instant slide change without
+					shutter, parallax or text animation
+					(<code>prefers-reduced-motion</code>). Text fields in
+					<code>slides.json</code> may contain simple HTML such as
+					<code>&lt;br&gt;</code>; attribute values (<code>alt</code>,
+					<code>src</code>, <code>href</code>) are escaped
+					automatically.
+				</p>
+			</section>
+
+			<section class="card">
+				<h2>7. Browser Support & Requirements</h2>
 				<p>
 					The component is fully compatible with all modern web
 					browsers supporting CSS Grid, Flexbox, Custom Properties
@@ -423,6 +454,86 @@
 					<li>Apple Safari (latest)</li>
 					<li>Microsoft Edge (latest)</li>
 				</ul>
+			</section>
+
+			<section class="card">
+				<h2>8. Changelog</h2>
+				<h3>v2.3.0 (2026-11-10)</h3>
+				<ul>
+					<li>
+						<strong>Fixed – Swipe during animation:</strong> A swipe
+						performed while a shutter transition was still running
+						bypassed the animation lock and desynchronized the DOM
+						queue and the pagination. Swipes now go through the arrow
+						buttons and are ignored while animating.
+					</li>
+					<li>
+						<strong>Fixed – Hover pause after mouse drag:</strong>
+						Autoplay no longer resumes after a drag while the pointer
+						is still over the slider (<code>data-stop-on-hover</code>).
+					</li>
+					<li>
+						<strong>Fixed – Aborted touch gestures:</strong> A
+						<code>touchcancel</code> event no longer leaves autoplay
+						paused permanently.
+					</li>
+					<li>
+						<strong>Fixed – Horizontal scrollbar:</strong>
+						<code>width: 100vw</code> (includes the scrollbar) replaced
+						with <code>width: 100%</code>.
+					</li>
+					<li>
+						<strong>Fixed – Mobile viewport height:</strong> Uses
+						<code>100svh</code> (with <code>100vh</code> fallback) so
+						the hero no longer jumps when the address bar collapses.
+					</li>
+					<li>
+						<strong>Fixed – Broken markup with special
+						characters:</strong> <code>alt</code>, <code>src</code> and
+						<code>href</code> values from <code>slides.json</code> are
+						now escaped.
+					</li>
+					<li>
+						<strong>Improved – Single source for timing:</strong>
+						Shutter duration is the CSS custom property
+						<code>--shutter-duration</code>, read by the script.
+					</li>
+					<li>
+						<strong>Improved – Visible error message:</strong> A
+						missing or invalid <code>slides.json</code> now shows a
+						message (with a <code>file://</code> hint) instead of a
+						black screen.
+					</li>
+					<li>
+						<strong>Improved – Accessibility:</strong>
+						<code>aria-label</code> on arrows and dots,
+						<code>aria-current</code> on the active dot, hidden slides
+						are <code>inert</code>, and
+						<code>prefers-reduced-motion</code> is supported.
+					</li>
+					<li>
+						<strong>Improved – Touch handling:</strong>
+						<code>touch-action: pan-y</code> keeps vertical scrolling
+						smooth while horizontal swipes go to the slider.
+					</li>
+					<li>
+						<strong>Cleanup:</strong> Removed duplicate
+						<code>display</code> declarations, numbered demo texts in
+						<code>slides.json</code>, re-versioned all files to 2.3.0.
+					</li>
+				</ul>
+				<h3>v2.2.0 (2026-11-10)</h3>
+				<ul>
+					<li>
+						Fixed desynchronization of the DOM queue and Z-index
+						hierarchy on pagination jumps and restricted non-adjacent
+						pagination buttons during active animations.
+					</li>
+				</ul>
+				<p style="color: var(--text-muted)">
+					For the complete history (v1.0.0 – v2.3.0) see
+					<code>README.md</code> / <code>README.txt</code>.
+				</p>
 			</section>
 
 			<footer>

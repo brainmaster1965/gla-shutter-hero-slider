@@ -2,7 +2,7 @@
  * ==============================================================================
  * Project Name: Gla Shutter Hero Slider
  * Description: Premium Fullscreen Hero Slider with Shutter Effect & Parallax
- * Version: 2.2.0
+ * Version: 2.3.0
  * Author: WebDevGLa
  * License: Commercial / MIT
  * ==============================================================================
@@ -29,11 +29,15 @@
 
 /* Base Slider Layout */
 .wp-block-gla-heroslider {
+	/* Shutter duration: single source of truth, read by script.js */
+	--shutter-duration: 1500ms;
+
 	position: relative;
 	top: 0;
 	left: 0;
 	height: 100vh;
-	width: 100vw;
+	height: 100svh; /* mobile: ignores the collapsing browser address bar */
+	width: 100%; /* 100vw would include the scrollbar and cause horizontal scrolling */
 	margin: 0;
 	max-width: none !important;
 	overflow: hidden;
@@ -42,6 +46,7 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	touch-action: pan-y; /* vertical scrolling stays, horizontal swipes go to the slider */
 
 	--progress-display: block;
 	--arrows-display: flex;
@@ -274,7 +279,6 @@
 	width: 100%;
 	transform: translateY(-50%);
 	z-index: 100;
-	display: flex;
 	justify-content: space-between;
 	box-sizing: border-box;
 	padding: 0 20px;
@@ -308,7 +312,6 @@
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 100;
-	display: flex;
 	gap: 8px;
 	display: var(--pagination-display, flex);
 }
@@ -415,7 +418,7 @@
 
 .wp-block-gla-heroslider.next .slide-time,
 .wp-block-gla-heroslider.prev .slide-time {
-	animation: runningTime 1.5s linear 1 forwards;
+	animation: runningTime var(--shutter-duration) linear 1 forwards;
 }
 
 .wp-block-gla-heroslider.next .slide-arrows button,
@@ -440,7 +443,7 @@
 	.slide-list
 	.slide-item:nth-child(1)
 	.slide-wrapper {
-	transition: clip-path 1.5s linear;
+	transition: clip-path var(--shutter-duration) linear;
 	clip-path: inset(0 100% 0 0);
 }
 
@@ -451,7 +454,7 @@
 	.slide-list
 	.slide-item:nth-child(2)
 	.slide-wrapper {
-	transition: clip-path 1.5s linear;
+	transition: clip-path var(--shutter-duration) linear;
 	clip-path: inset(0 0 0 100%);
 }
 
@@ -510,4 +513,35 @@
 	top: auto !important;
 	bottom: 80px !important;
 	transform: translateX(-50%) !important;
+}
+
+/* Error message (slides.json could not be loaded) */
+.wp-block-gla-heroslider .slide-error {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 20px;
+	text-align: center;
+	color: #fff;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+/* Respect the OS setting "reduce motion": no shutter, no parallax, no text animation */
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-gla-heroslider {
+		--shutter-duration: 1ms;
+	}
+	.wp-block-gla-heroslider .slide-list .slide-item img {
+		transform: none !important;
+		transition: none;
+	}
+	.wp-block-gla-heroslider .slide-list .slide-item.active .slide-content > * {
+		animation: none !important;
+		transform: none !important;
+		filter: none !important;
+		opacity: 1 !important;
+	}
 }
