@@ -107,7 +107,7 @@
 		<div class="container">
 			<header>
 				<h1>
-					Gla Shutter Hero Slider <span class="badge">v2.0.0</span>
+					Gla Shutter Hero Slider <span class="badge">v2.1.0</span>
 				</h1>
 				<p style="color: var(--text-muted)">
 					Comprehensive Documentation & Guide by
@@ -142,6 +142,15 @@
 					about dependency conflicts or performance overhead.
 				</div>
 				<ul>
+					<li>
+						<strong>Hide non desired elements:</strong> With V2.1.0
+						red progress timer on top (bar), nav-buttons &
+						pagination-dots can be hidden via HTML data attributes
+						(<code>data-hide-progress</code>,
+						<code>data-hide-navigation</code>,
+						<code>data-hide-pagination</code>)
+					</li>
+
 					<li>
 						<strong>Fullscreen Hero Experience:</strong> Perfectly
 						scales across all desktop and mobile viewports with
@@ -198,9 +207,9 @@
     ├── index.html                   # Demo landing page with header/footer
     └── assets/
         ├── css/
-        │   └── style.css            # Full, unminified CSS source code (v2.0.0)
+        │   └── style.css            # Full, unminified CSS source code (v2.1.0)
         ├── js/
-        │   └── script.js            # Full, unminified JavaScript engine source (v2.0.0)
+        │   └── script.js            # Full, unminified JavaScript engine source (v2.1.0)
         ├── json/
         │   └── slides.json          # Central data source for all slides
         └── images/                  # Media assets directory
@@ -363,6 +372,34 @@
 								Can be set to <code>false</code> to keep
 								autoplay running on hover.
 							</td>
+						</tr>
+						<tr>
+							<td><code>data-hide-progress</code></td>
+							<td>Boolean</td>
+							<td><code>false</code></td>
+							<td>
+								Hides the top progress timer bar when set to
+								<code>true</code>.
+							</td>
+						</tr>
+						<tr>
+							<td><code>data-hide-navigation</code></td>
+							<td>Boolean</td>
+							<td><code>false</code></td>
+							<td>
+								Hides the left/right navigation arrows when set
+								to <code>true</code>.
+							</td>
+						</tr>
+						<tr>
+							<td><code>data-hide-pagination</code></td>
+							<td>Boolean</td>
+							<td><code>false</code></td>
+							<td>
+								Hides the bottom pagination dots when set to
+								<code>true</code>.
+							</td>
+						</tr>
 						</tr>
 					</tbody>
 				</table>

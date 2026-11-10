@@ -1,4 +1,4 @@
-# Gla Shutter Hero Slider <span style="background-color: #f1683a; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; font-weight: 600; vertical-align: middle;">v2.0.0</span>
+# Gla Shutter Hero Slider <span style="background-color: #f1683a; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; font-weight: 600; vertical-align: middle;">v2.1.0</span>
 
 ![Gla Shutter Hero Slider Preview](preview.png)
 
@@ -49,9 +49,9 @@ gla-shutter-hero-slider/
     ├── index.html          # Interactive Showcase Landing Page
     └── assets/
         ├── css/
-        │   └── style.css   # Full Unminified CSS Source (v2.0.0)
+        │   └── style.css   # Full Unminified CSS Source (v2.1.0)
         ├── js/
-        │   └── script.js  # Full Unminified JS Engine (v2.0.0)
+        │   └── script.js  # Full Unminified JS Engine (v2.1.0)
         ├── json/
         │   └── slides.json # Central Configuration File
         └── images/
@@ -81,14 +81,19 @@ Include the unminified CSS in your `<head>` and JS before the closing `</body>` 
 Add the slider container with custom data attributes to your page:
 
 ```html
-<div class="wp-block-gla-heroslider" data-autoplay="true" data-interval="7000" data-stop-on-hover="true">
-    <div class="slide-list"></div>
-    <div class="slide-arrows">
-        <button id="prev">&lt;</button>
-        <button id="next">&gt;</button>
-    </div>
-    <div class="slide-pagination"></div>
-    <div class="slide-time"></div>
+<div
+	class="wp-block-gla-heroslider"
+	data-autoplay="true"
+	data-interval="7000"
+	data-stop-on-hover="true"
+>
+	<div class="slide-list"></div>
+	<div class="slide-arrows">
+		<button id="prev">&lt;</button>
+		<button id="next">&gt;</button>
+	</div>
+	<div class="slide-pagination"></div>
+	<div class="slide-time"></div>
 </div>
 ```
 
@@ -98,43 +103,43 @@ Manage content, visibility, positioning, and button styles easily without alteri
 
 ```json
 {
-  "settings": {
-    "version": "2.0.0"
-  },
-  "slides": {
-    "slide1": {
-      "showContent": {
-        "author": true,
-        "title": true,
-        "topic": true,
-        "description": true,
-        "button1": true,
-        "button2": true
-      },
-      "alignment": "center-center",
-      "author": "AUTHOR 1",
-      "title": "TITLE 1",
-      "topic": "TOPIC 1",
-      "description": "Discover premium web components built with pure HTML, CSS, and modern JavaScript.",
-      "imageUrl": "assets/images/img1.jpg",
-      "authorColor": "#ffffff",
-      "authorFontSize": 14,
-      "titleColor": "#ffffff",
-      "titleFontSize": 48,
-      "topicColor": "#f1683a",
-      "topicFontSize": 48,
-      "button1Text": "SEE MORE",
-      "button1Url": "#",
-      "button1Color": "#eee",
-      "button1TextColor": "#000",
-      "button1HoverColor": "#f1683a",
-      "button1HoverTextColor": "#fff",
-      "button1BorderRadius": 4,
-      "button1Outline": true,
-      "button1OutlineColor": "#fff",
-      "button1OutlineWidth": 1
-    }
-  }
+	"settings": {
+		"version": "2.1.0"
+	},
+	"slides": {
+		"slide1": {
+			"showContent": {
+				"author": true,
+				"title": true,
+				"topic": true,
+				"description": true,
+				"button1": true,
+				"button2": true
+			},
+			"alignment": "center-center",
+			"author": "AUTHOR 1",
+			"title": "TITLE 1",
+			"topic": "TOPIC 1",
+			"description": "Discover premium web components built with pure HTML, CSS, and modern JavaScript.",
+			"imageUrl": "assets/images/img1.jpg",
+			"authorColor": "#ffffff",
+			"authorFontSize": 14,
+			"titleColor": "#ffffff",
+			"titleFontSize": 48,
+			"topicColor": "#f1683a",
+			"topicFontSize": 48,
+			"button1Text": "SEE MORE",
+			"button1Url": "#",
+			"button1Color": "#eee",
+			"button1TextColor": "#000",
+			"button1HoverColor": "#f1683a",
+			"button1HoverTextColor": "#fff",
+			"button1BorderRadius": 4,
+			"button1Outline": true,
+			"button1OutlineColor": "#fff",
+			"button1OutlineWidth": 1
+		}
+	}
 }
 ```
 
@@ -142,17 +147,27 @@ Manage content, visibility, positioning, and button styles easily without alteri
 
 ## ⚙️ Data Attributes
 
-| Attribute | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `data-autoplay` | Boolean | `true` | Enables or disables automatic slide transitions. |
-| `data-interval` | Number | `7000` | Sets slide transition interval in milliseconds. |
-| `data-stop-on-hover` | Boolean | `true` | Pauses autoplay when hovering over the slider. Set to `false` to keep autoplay running on hover. |
+| Attribute            | Type    | Default | Description                                                                                      |
+| :------------------- | :------ | :------ | :----------------------------------------------------------------------------------------------- |
+| `data-autoplay`      | Boolean | `true`  | Enables or disables automatic slide transitions.                                                 |
+| `data-interval`      | Number  | `7000`  | Sets slide transition interval in milliseconds.                                                  |
+| `data-stop-on-hover` | Boolean | `true`  | Pauses autoplay when hovering over the slider. Set to `false` to keep autoplay running on hover. |
 
 ---
 
 ## 🔄 Changelog
 
+### v2.1.0 (2026-11-09)
+
+- Minor bugfixes & improvements.
+- Missing FontFamily added to author, title & topic.
+- Added configurable HTML attribute control for hiding progress bar on top (`data-hide-progress`).
+- Added configurable HTML attribute control for hiding nav-buttons (`data-hide-navigation`).
+- Added configurable HTML attribute control for hiding pagination (`data-hide-pagination`).
+- Updated comprehensive HTML documentation to cover all v2.1.0 enhancements.
+
 ### v2.0.0 (2026-11-08)
+
 - Added dynamic 9-grid vertical and horizontal content positioning via JSON alignment.
 - Added strict vertical CSS positioning overrides (`top`, `bottom`, `center`) in `style.css`.
 - Added global touch-swipe (mobile/tablet) and desktop mouse drag-to-swipe interaction.
@@ -162,6 +177,7 @@ Manage content, visibility, positioning, and button styles easily without alteri
 - Updated comprehensive HTML documentation to cover all v2.0.0 enhancements.
 
 ### v1.0.0 (2026-11-07)
+
 - Initial commercial release.
 - Standalone HTML/CSS/JS engine with dynamic JSON loading.
 - Added full parallax effect support and responsive shutter clip-path transitions.
@@ -180,4 +196,4 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-*Created with ❤️ by **WebDevGLa***
+\*Created with ❤️ by **WebDevGLa\***

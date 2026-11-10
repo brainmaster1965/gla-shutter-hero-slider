@@ -2,7 +2,7 @@
  * ==============================================================================
  * Project Name: Gla Shutter Hero Slider
  * Description: Dynamic JSON parser and slider engine (Shutter + Parallax)
- * Version: 2.0.0
+ * Version: 2.1.0
  * Author: WebDevGLa
  * License: Commercial / MIT
  * ==============================================================================
@@ -177,9 +177,9 @@ function initializeSliderEngine(sliderContainer) {
 	let timeRunning = 1500;
 	let timeAutoNext = dynamicInterval;
 
-	if (!isAutoplayEnabled && timeDom) {
-		timeDom.style.display = 'none';
-	}
+	// if (!isAutoplayEnabled && timeDom) {	// v2.1.0 removed
+	// 	timeDom.style.display = 'none';
+	// }
 
 	let numItems = sliderDom.querySelectorAll('.slide-item').length;
 	let globalCurrentIndex = 0;

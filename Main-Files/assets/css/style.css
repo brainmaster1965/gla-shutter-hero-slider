@@ -2,7 +2,7 @@
  * ==============================================================================
  * Project Name: Gla Shutter Hero Slider
  * Description: Premium Fullscreen Hero Slider with Shutter Effect & Parallax
- * Version: 2.0.0
+ * Version: 2.1.0
  * Author: WebDevGLa
  * License: Commercial / MIT
  * ==============================================================================
@@ -42,6 +42,20 @@
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* IE/Edge */
 	user-select: none; /* Standard */
+
+	/* Default values show/hide progress bar, arrows, and pagination */
+	--progress-display: block;
+	--arrows-display: flex;
+	--pagination-display: flex;
+}
+.wp-block-gla-heroslider[data-hide-progress='true'] {
+	--progress-display: none;
+}
+.wp-block-gla-heroslider[data-hide-navigation='true'] {
+	--arrows-display: none;
+}
+.wp-block-gla-heroslider[data-hide-pagination='true'] {
+	--pagination-display: none;
 }
 
 .wp-block-gla-heroslider .slide-list {
@@ -265,6 +279,9 @@
 	box-sizing: border-box;
 	padding: 0 20px;
 	pointer-events: none;
+
+	/* Display control via CSS variable */
+	display: var(--arrows-display, flex);
 }
 
 .slide-arrows button {
@@ -295,6 +312,9 @@
 	z-index: 100;
 	display: flex;
 	gap: 8px;
+
+	/* Display control via CSS variable */
+	display: var(--pagination-display, flex);
 }
 
 .slide-pagination button {
@@ -388,6 +408,9 @@
 	background-color: #f1683a;
 	left: 0;
 	top: 0;
+
+	/* Display control via CSS variable */
+	display: var(--progress-display, block);
 }
 
 .wp-block-gla-heroslider.next .slide-time,

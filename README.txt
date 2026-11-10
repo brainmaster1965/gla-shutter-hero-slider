@@ -1,7 +1,7 @@
 ================================================================================
 GLA SHUTTER HERO SLIDER
 ================================================================================
-Version: 2.0.0
+Version: 2.1.0
 Author: WebDevGLa
 License: Envato Standard / Commercial License
 
@@ -43,6 +43,14 @@ DIRECTORY STRUCTURE:
 
 CHANGELOG:
 --------------------------------------------------------------------------------
+v2.1.0 (2026-11-09)
+- Minor bugfixes & improvements.
+- Missing FontFamily added to author, title & topic.
+- Added configurable HTML attribute control for hiding progress bar on top (`data-hide-progress`).
+- Added configurable HTML attribute control for hiding nav-buttons (`data-hide-navigation`).
+- Added configurable HTML attribute control for hiding pagination (`data-hide-pagination`).
+- Updated comprehensive HTML documentation to cover all v2.1.0 enhancements.
+
 v2.0.0 (2026-11-08)
 - Added dynamic 9-grid vertical and horizontal content positioning via JSON alignment.
 - Added strict vertical CSS positioning overrides (top, bottom, center) in style.css.
