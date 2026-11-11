@@ -112,6 +112,12 @@ v1.0.0 (2026-11-07)
 - Standalone HTML/CSS/JS engine with dynamic JSON loading
 - Added full parallax effect support and responsive shutter clip-path transitions
 
+DEMO IMAGES:
+--------------------------------------------------------------------------------
+The slide images (img1.jpg - img6.jpg) were generated with Google Gemini and are
+included for demonstration purposes only. They are not part of the MIT-licensed
+source code. Please replace them with your own images for production use.
+
 SUPPORT & CONTACT:
 --------------------------------------------------------------------------------
 If you have any questions or need support, please contact WebDevGLa via 

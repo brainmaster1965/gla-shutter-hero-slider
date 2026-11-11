@@ -241,6 +241,12 @@ For full custom styling, dynamic API reference, alignment system details, and st
 
 ---
 
+## 🖼️ Demo Images
+
+The slide images (`img1.jpg` – `img6.jpg`) were generated with Google Gemini and are included for demonstration purposes only. They are not part of the MIT-licensed source code. Please replace them with your own images for production use.
+
+---
+
 ## 📜 License
 
 This project is open-source and available under the [MIT License](LICENSE).
