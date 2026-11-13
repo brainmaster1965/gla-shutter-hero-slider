@@ -1,4 +1,4 @@
-# Gla Shutter Hero Slider <span style="background-color: #f1683a; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; font-weight: 600; vertical-align: middle;">v2.3.0</span>
+# <span style="display: inline-block; vertical-align: middle;"><img src="https://img.shields.io/badge/v2.3.0-f1683a?style=for-the-badge&logoColor=white" alt="v2.3.0"></span> Gla Shutter Hero Slider - Html
 
 ![Gla Shutter Hero Slider Preview](preview.png)
 
@@ -180,8 +180,8 @@ Manage content, visibility, positioning, and button styles easily without alteri
 
 ## 🎛️ CSS Custom Properties
 
-| Property             | Default  | Description                                                                                                  |
-| :------------------- | :------- | :----------------------------------------------------------------------------------------------------------- |
+| Property             | Default  | Description                                                                                                     |
+| :------------------- | :------- | :-------------------------------------------------------------------------------------------------------------- |
 | `--shutter-duration` | `1500ms` | Duration of the shutter reveal and the progress bar. Set it on `.wp-block-gla-heroslider`; accepts `ms` or `s`. |
 
 ---
